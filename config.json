@@ -1,6 +1,6 @@
 {
     "siteTitle": "Harry Sha",
-    "outputDir": "docs",
+    "outputDir": "_site",
     "copy": {
         "/home": "/"
     },
