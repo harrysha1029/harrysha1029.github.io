@@ -8,7 +8,7 @@ I play gigs with my acoustic guitar every now and then, and a lot of the pieces 
 ## Definitions
 Let's start with some definitions! First in math, then in code. 
 * Associate each key on the piano with an integer starting with A0 = 0, Bb0 = 1... and so on.
-* Define a tuning to be a vector a 6 pitches \\( \in \mathbb{Z}^6 \\)
+* Define a tuning to be a vector a 6 pitches.
 * For any tunings x, y define their distance to be the *'manhattan distance'* or \\(L_1\\) distance:
 
 $$d\_{tuning}(x, y) = \sum\_{i=1}^6 |x\_i - y\_i|.$$
@@ -59,22 +59,20 @@ fn tuning_dist(p1: &Tuning, p2: &Tuning) -> i32 {
 Let's view this as a graph problem. Let the nodes in the graph be the tunings, and have an edge between each node, with the cost of the edge being the distance between the two tunings. Then **we want to find the 'shortest' path that passes through all the nodes**. Not only that, because we want to start and end up in standard tuning, we want to find the 'shortest' cycle that passes through all the nodes. **Turns out, this is a famous problem known as the travelling salesperson problem (TSP)**! And it's pretty hard to solve (NP-Hard). Here is the list of tunings we are working with (there are 14 of them).
 
 <pre><code class='language-rust'>
-[
-    [E2, A3, D3, G3, B3, E4]
-    , [D2, A3, D3, G3, A3, D4]
-    , [D2, A3, D3, Gb3, A3, D4]
-    , [B2, E2, D3, Gb3, A3, D4]
-    , [E2, B3, D3, G3, B3, D4]
-    , [E2, B3, D3, G3, B3, E4]
-    , [B2, Gb2, Db3, Gb3, B3, Gb4]
-    , [E2, C3, D3, G3, A3, D4]
-    , [D2, A3, D3, G3, C3, E4]
-    , [C2, G2, D3, F3, Bb3, D4]
-    , [Gb2, A3, B3, E3, Ab2, B4]
-    , [Db2, Ab2, E3, Gb3, B3, Eb4]
-    , [D2, A3, E3, F3, C3, E4]
-    , [D2, G2, D3, G3, B3, E4]
-]
+[E2, A3, D3, G3, B3, E4]
+[D2, A3, D3, G3, A3, D4]
+[D2, A3, D3, Gb3, A3, D4]
+[B2, E2, D3, Gb3, A3, D4]
+[E2, B3, D3, G3, B3, D4]
+[E2, B3, D3, G3, B3, E4]
+[B2, Gb2, Db3, Gb3, B3, Gb4]
+[E2, C3, D3, G3, A3, D4]
+[D2, A3, D3, G3, C3, E4]
+[C2, G2, D3, F3, Bb3, D4]
+[Gb2, A3, B3, E3, Ab2, B4]
+[Db2, Ab2, E3, Gb3, B3, Eb4]
+[D2, A3, E3, F3, C3, E4]
+[D2, G2, D3, G3, B3, E4]
 </code></pre>
 
 ## Brute Force Search
