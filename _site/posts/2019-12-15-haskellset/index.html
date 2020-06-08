@@ -1,0 +1,301 @@
+<!doctype html><html><head><title>Haskell Concepts with Sets | Harry Sha</title><meta charset="utf-8"><link href="/prism.css" rel="stylesheet" type="text/css"><script src="/prism.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link href="//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata" rel="stylesheet" type="text/css"></head><body><div class="header-logo"><h2><a href="/home">HS</a></h2></div><div class="navigation"><ul><li><a href="/home">Home</a></li><li><a href="/posts">Blog</a></li><li><a href="/cv">CV</a></li><li><a href="/fun">Fun</a></li><li><a href="/contact">Contact</a></li></ul></div><div class="sidebar"></div><div class="sidebar2"></div><div class="content"><h1>Haskell Concepts with Sets</h1><div class="post-metadata"><span>2019-12-15</span><span>•</span><a href="/tags/math">math</a><a href="/tags/set_theory">set_theory</a></div><div class="markdown"><p>In this post we’ll explore some Haskell and functional programming concepts with set theory. Our goal here is to implement a type that represents a set, and build the Von Neumann universe up to \(V_{\omega}\). </p>
+<h2 id="haskell">Haskell</h2>
+<p>You can follow the examples in this post here (you can open it in a bigger window by clicking the top right). To play around with it, you can type <code>:l main</code> in the ghci prompt, which will load the code.</p>
+<iframe height="800px" width="100%" src="https://repl.it/@HarrySha/haskellSetTheory?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+
+<h2 id="recursive-data-types">Recursive data types</h2>
+<p>You can define data types in Haskell using the <code>data</code> keyword. For example. <code>data Bool = True | False</code>. In our case, we want to define a type for Sets. For our purposes, we can think of a set as a collection of other sets. So one possible declaration for a our type would be </p>
+<pre><code class="language-haskell">
+data Set = Elems [Set]
+</code></pre>
+
+<p>This defines <code>Set</code> recursively as a list of <code>Set</code>, and we can create sets using the <code>Elems</code>. For example <code>emptyset = Elems []</code>.</p>
+<h2 id="typeclasses">Typeclasses</h2>
+<p>A typeclass in Haskell is like an adjective describing the type. Common typeclasses are <code>Ord</code> (can be ordered), <code>Eq</code> (can be equated), <code>Show</code> (can be converted to string). More precisely, a typeclass defines a set of functions that instances implement, somewhat like an interface. To save some work, we can often use the deriving keyword when defining our data type. For example we might do 
+<code>data Set = Elems [Set] deriving (Eq, Show)</code>. These will use the default implementations which are often sufficient. Loading this up in ghci we get</p>
+<pre><code class="language-haskell">
+&gt; data Set = Elems [Set] deriving (Eq, Show)
+&gt; emptySet = Elems []
+&gt; emptySet
+Elems []
+&gt; emptySet == emptySet
+True
+&gt; a = Elems [Elems [], Elems []]
+&gt; a 
+Elems [Elems [], Elems []]
+&gt; b = Elems [Elems []] 
+&gt; a == b
+False 
+</code></pre>
+
+<p>There are a couple of problems with this. We should have had <code>a == b</code> is True, as sets are unordered and don’t care about duplicates. Also, the default implementation of show prints sets in a kind of clunky way. Luckily, we can solve these problems by providing our own implementation for the <code>Eq</code> and <code>Show</code> typeclasses.</p>
+<h3 id="equality-any-and-all-">Equality (any and all)</h3>
+<p>A good definition for set equality is \(a = b \iff a \subseteq b \land b \subseteq a\). We can implement the type class as follows.</p>
+<pre><code class="language-haskell">
+subset (Elems x) (Elems y) = all (\a -&gt; (any (\b -&gt; a == b) y)) x 
+instance Eq Set where
+    a == b = (subset a b) &amp;&amp; (subset b a)
+</code></pre>
+
+<p>Something I find pretty cool is that the implementation for subset translates almost directly from the first order logic definition </p>
+<p>$$a \subseteq b \iff \forall a \in x. \exists b \in y. (a = b)$$</p>
+<p>To see how this works we can examine the type of <code>any</code> and <code>all</code>:</p>
+<pre><code class="language-haskell">
+any :: Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool 
+</code></pre>
+
+<p>Think of <code>t</code> as a list for now. <code>any</code> takes as input a predicate and a list, and returns true if any item in the list makes the predicate true. and <code>all</code> works analogously. Thus <code>any (\a -&gt; p a) x</code> translates to \(\exists a \in x. p(a)\), and <code>all (\a -&gt; p a) x</code> translates to \(\forall a \in x. p(a)\). As a result of this definition, we have:</p>
+<pre><code class="language-haskell">
+&gt; Elems [Elems []] == Elems [Elems [], Elems []] 
+True -- don't care about repetition
+&gt; Elems [Elems [Elems []], Elems []] == Elems [Elems [], Elems [Elems []]]
+True -- unordered
+</code></pre>
+
+<p>Another interesting thing is that one might think that there is a problem with circular definitions here. We are using <code>subset</code> to define <code>==</code>, but also <code>==</code> in the definition of <code>subset</code>. Turns out this is ok as it is in fact a pairwise recursive definition.</p>
+<h3 id="show">Show</h3>
+<p>Printing is still ugly, so let’s implement our own show function!</p>
+<pre><code class="language-haskell">
+instance Show Set where
+    show (Elems x) =
+        let nodup = Data.List.nub x in -- Remove duplicates 
+        "["
+        ++ (Data.List.intercalate ", " [show a | a &lt;- nodup])
+        ++ "]"
+</code></pre>
+
+<p>The first step is to remove duplicates. Notice that we didn’t have to write our own remove duplicates function because Data.List.nub does that, and it has type</p>
+<pre><code class="language-haskell">
+nub :: Eq a =&gt; [a] -&gt; [a]`
+</code></pre>
+
+<p>and we have implemented <code>Eq</code> for <code>Set</code>! <code>show</code> then works by recursively showing its elements and joining them with “,”. Now our elements show as follows</p>
+<pre><code class="language-haskell">
+&gt; x = Elems [ Elems [], Elems [Elems []]]
+[[], [[]]]
+</code></pre>
+
+<h3 id="num">Num</h3>
+<pre><code class="language-haskell">
+elem x (Elems y) = any (\a -&gt; x == a) y
+notElem x y = not (Set.elem x y)
+opair x y = Elems [x, Elems [y]]
+</code></pre>
+
+<p>While we’re at it, let’s make <code>Set</code> an instance of <code>Num</code>. This will let sets behave like numbers, so we can add subtract and multiply sets, which we’ll take to correspond to the operations of \( \cup, \setminus \), and \( \times \).</p>
+<pre><code class="language-haskell">
+elem x (Elems y) = any (\a -&gt; x == a) y
+notElem x y = not (Set.elem x y)
+opair x y = Elems [x, Elems [y]]
+
+instance Num Set where
+    (+) (Elems x) (Elems y) = Elems (x ++ y) -- Union
+    (-) (Elems x) y = Elems (filter (\a -&gt; a `Set.notElem` y) x) -- Difference
+    (*) (Elems x) (Elems y) = Elems $ opair &lt;$&gt; x &lt;*&gt; y -- Cartesian Prod
+    fromInteger x = naturals !! (fromInteger x) -- To be explained
+    abs = undefined
+   signum = undefined
+</code></pre>
+
+<p>For union, we just concatenate the lists (not worried about duplicates because of the way we define <code>==</code> and <code>show</code>). For the difference, \(x \setminus y\), we keep only the elements in \(x\) that are not in \(y\). Cartesian product gets a little spicy and uses <code>&lt;*&gt;</code> from the Applicative typeclass. <code>opair &lt;$&gt; x</code> partially applies opair to each element of \(x\), and then <code>&lt;*&gt; y</code>, applies each of the partially applied functions in <code>opair &lt;$&gt; x</code> to each element of \(y\), which gives us a a list of all ordered pairs \(\langle a, b \rangle\) where \(a \in x\), and \(b \in y\).</p>
+<p>Once we have implemented the Num typeclass for Set we can use <code>+, - , *</code> on sets. We also get to use sets as arguments to functions that take in <code>Num</code>. For example, we get to use <code>^</code> (exponentiation) which has type signature</p>
+<pre><code class="language-haskell">
+(^) :: (Num a, Integral b) =&gt; a -&gt; b -&gt; a 
+</code></pre>
+
+<p>even though we didn’t explicitly implement it, nice.</p>
+<h2 id="-omega-v_-omega-and-infinite-data-structures">\( \omega\), \(V_\omega\), and Infinite data structures</h2>
+<p>Now \(\omega\) and \(V_\omega\) are pretty big, in fact they’re both infinite. So how do we can we represent these in our computers that have finite memory? Haskell has the answer, and it’s lazy evaluation. The idea is that we can have a data structure that is ‘infinite’ because we don’t actually compute it until we need it (lazy). We can then define the following</p>
+<pre><code class="language-haskell">
+insert (Elems x) y = Elems (y:x)
+successor x = insert x x
+naturals = iterate successor (Elems [])
+omega = Elems naturals
+
+smap f (Elems x) = Elems (map f x) -- Map but for sets
+-- powerset(x:xs) = all the subsets with x \cup all the subsets w/o x
+powerSet (Elems []) = Elems [Elems []]
+powerSet (Elems (x:xs)) = let withoutFirst = powerSet $ Elems xs in 
+                          smap (\a -&gt; insert a x) withoutFirst + withoutFirst
+
+bigCup (Elems x) = foldl (+) (Elems []) x
+vOmega = bigCup $ Elems $ iterate powerSet (Elems [])
+</code></pre>
+
+<p>The successor function \(S(x) = x \cup \{x\}\) is defined by inserting itself into the set, and a list of natural numbers can then be defined using the <code>iterate</code> function. </p>
+<pre><code class="language-haskell">
+iterate :: (a -&gt; a) -&gt; a -&gt; [a]
+</code></pre>
+
+<p>Which takes a function, a starting point, and returns an infinite list of repeated applications of the function. So <code>naturals</code> is \(\left[0, S(0), S(S(0)),…\right]\), and <code>omega</code> is <code>Elems naturals</code>: the set whose elements are all the natural numbers - a.k.a \(\omega\). Similarly, we can define powerset, and \(V_\omega\)! </p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This was some practice for me in learning new concepts in functional programming and Haskell. It was fun, and I found it cool that you can represent infinite sets in a programming language. </p>
+<p>We could have used Data.Set.Set as our container instead of list. We could also extend this by making set an instance of Foldable (or I guess something like MonoFoldable). </p>
+</div></div><div class="footer"><div class="link"><a href="https://github.com/harrysha1029"><svg class="feather feather-github" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div><div class="link"><a href="https://www.youtube.com/channel/UCVjPFH1nsdSB03heP0Al36A?view_as=subscriber"><svg class="feather feather-youtube" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div><div class="link"><a href="https://www.linkedin.com/in/harry-sha-374345145/"><svg class="feather feather-linkedin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></div><div class="link"><a href="https://www.facebook.com/harry.sha.12"><svg class="feather feather-facebook" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></div><div class="link"><a href="https://www.npmjs.com/package/elmstatic">Created with Elmstatic</a></div></div><link href="/styles.css" rel="stylesheet" type="text/css"><style>body {
+    padding:0px;
+    margin:0px;
+    background-color:#ffffff;
+    color:#363636;
+    font-family:Lato, sans-serif;
+    font-size:20px;
+    line-height:1.4em;
+}
+
+a {
+    color:#348aa7;
+    text-decoration:none;
+}
+
+code {
+    font-family:Inconsolata, monospace;
+}
+
+pre  code {
+    overflow-x:scroll !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:Lato, sans-serif;
+    line-height:1.1em;
+}
+
+h1 {
+    font-size:2.66667em;
+    margin-bottom:2.0202rem;
+}
+
+h2 {
+    font-size:2em;
+    margin-bottom:1.61616rem;
+}
+
+h3 {
+    font-size:1.33333em;
+    margin-bottom:1.21212rem;
+    color:#0e4f99;
+}
+
+h4 {
+    font-size:1.2em;
+    margin-bottom:0.80808rem;
+}
+
+h5, h6 {
+    font-size:1em;
+    margin-bottom:0.60606rem;
+}
+
+p {
+    margin:auto auto 1.5rem;
+}
+
+small {
+    font-size:65%;
+}
+
+.header-logo {
+    text-align:center;
+    padding:10px;
+    margin-top:-15px;
+    border-bottom:2px solid #8295a1;
+    background-color:#87ffe9;
+}
+
+.header-logo  a {
+    color:#363636;
+    margin-left:10px;
+}
+
+@media only screen and (min-width: 600px) {
+    .header-logo {
+        text-align:left;
+    }
+}
+
+.navigation {
+    text-align:center;
+    border-bottom:2px solid #8295a1;
+    background-color:#87ffe9;
+    padding:10px;
+    margin-top:-20px;
+}
+
+@media only screen and (min-width: 600px) {
+    .navigation {
+        margin-top:0px;
+    padding:0px;
+    text-align:right;
+    }
+}
+
+.navigation  ul {
+    margin:0px;
+    padding:0px;
+}
+
+@media only screen and (min-width: 600px) {
+    .navigation  ul {
+        line-height:100px;
+    }
+}
+
+.navigation  li {
+    display:inline-block;
+    margin-right:40px;
+}
+
+.navigation  a {
+    color:#363636;
+}
+
+.content {
+    max-width:100vw;
+}
+
+.footer {
+    text-align:center;
+    border-top:2px solid #2f4858;
+    background-color:#87f1ff;
+}
+
+@media only screen and (min-width: 600px) {
+    .footer {
+        line-height:80px;
+    text-align:right;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .footer  .link {
+        display:inline-block;
+    margin-right:20px;
+    }
+}
+
+.footer  a {
+    color:#000000;
+    text-decoration:none;
+}
+
+.footer  svg {
+    padding-right:5px;
+    vertical-align:baseline;
+}
+
+.post-metadata {
+    margin-top:-0.5em;
+    margin-bottom:2em;
+}
+
+.post-metadata  a, .post-metadata  span {
+    display:inline-block;
+    margin-right:5px;
+}
+
+.post-metadata  a {
+    border:1px solid #e0e0e0;
+    border-radius:3px;
+    background-color:#f2fae8;
+    padding-left:5px;
+    padding-right:5px;
+}</style></body></html>

@@ -1,0 +1,23 @@
+{
+    "siteTitle": "Harry Sha",
+    "outputDir": "docs",
+    "copy": {
+        "/home": "/"
+    },
+    "feed": {
+        "type": "rss",
+        "title": "Harry Sha",
+        "description": "Harry Sha's Personal Website",
+        "id": "https://example.com",
+        "link": "https://example.com/posts",
+        "image": "https://example.com/img/logo.png",
+        "copyright": "Copyright: Author",
+        "language": "en",
+        "generator": "Elmstatic",
+        "author": {
+          "name": "Harry",
+          "link": "https://harrysha1029.github.io/"
+        }
+    },
+    "tags": ["other", "software", "math", "set_theory", "music", "guitar"]
+}

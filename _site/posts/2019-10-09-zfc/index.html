@@ -1,0 +1,285 @@
+<!doctype html><html><head><title>Axioms of ZFC Set Theory | Harry Sha</title><meta charset="utf-8"><link href="/prism.css" rel="stylesheet" type="text/css"><script src="/prism.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><link href="//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata" rel="stylesheet" type="text/css"></head><body><div class="header-logo"><h2><a href="/home">HS</a></h2></div><div class="navigation"><ul><li><a href="/home">Home</a></li><li><a href="/posts">Blog</a></li><li><a href="/cv">CV</a></li><li><a href="/fun">Fun</a></li><li><a href="/contact">Contact</a></li></ul></div><div class="sidebar"></div><div class="sidebar2"></div><div class="content"><h1>Axioms of ZFC Set Theory</h1><div class="post-metadata"><span>2019-10-09</span><span>•</span><a href="/tags/math">math</a><a href="/tags/set_theory">set_theory</a></div><div class="markdown"><p>ZFC is list of axioms for set theory that are commonly used as a foundation for mathematics. In this post we’ll talk about the axioms of ZFC, why they’re important, and what happens if we took away certain axioms. To help us, we’ll look (informally) at models of certain sub-theories of ZFC.</p>
+<h2 id="the-language-of-set-theory">The Language of Set Theory</h2>
+<p>The language of ZFC is first order logic (with equality) and a single binary predicate symbol \(\in\). This gives us access to infinitely many variables symbols \(x, y, z…\), and the logical symbols \(\land, \neg, \forall\)… etc. We may start to add more symbols such as \(\subseteq\) for clarity but these are all defined in terms of \(\in\) under the hood.</p>
+<p>In this post, we can think of a model as a collection of things \(A\), called the universe (this is the thing we are quantifying over when we use \(\forall\), and \(\exists\)), and an interpretation of the element relation \(\in^A\) which is the set of ordered pairs (a, b) for which \(a \in b\) is true. We’re also gonna use green symbols in the following section headers to refer to the respective axioms.</p>
+<h2 id="axiom-of-the-empty-set-span-style-color-green-8709-span-">Axiom of the empty set <span style="color:green">∅</span></h2>
+<blockquote>
+<p>There exists an empty set</p>
+</blockquote>
+<p>$$ \exists y \neg \exists x (x \in y). $$</p>
+<p>In the above formula, \(y\) is the ‘empty set’. The following would be a model for <span style="color:green">∅</span>. </p>
+<p>$$A = {a, b, c, d}, \in^A = {} $$ </p>
+<p>I.e. a model with multiple things that all have nothing in them. But this doesn’t seem to follow our intuitive notion that there should be just one empty set…</p>
+<h2 id="axiom-of-extensionality-span-style-color-green-span-">Axiom of extensionality <span style="color:green"> = </span></h2>
+<blockquote>
+<p>A set is determined by it’s elements</p>
+</blockquote>
+<p>$$ \forall x \forall y [\forall z (z \in x \iff z\in y) \iff x = y]. $$</p>
+<p>[^implies] With this axiom, we can now prove that the empty set is unique. How? Show that if there are two things that were both empty then they are equal! From now on, we’ll refer to the unique empty set as \(\emptyset\). <span style="color:green"> = </span> also gives us the familiar unordered property of sets, i.e. it can show \(\{a, b\} = \{b, a\}\).</p>
+<p>A model for <span style="color:green">∅</span> and <span style="color:green"> = </span> could be</p>
+<p>$$ B = {e} \in^B = {} $$ </p>
+<p>How about this one?</p>
+<p>$$ C = {e, a} \in^C = {a \in a} $$</p>
+<p>This still works, but now we have that \(a\) is an element of itself?!?</p>
+<p>[^implies]: Sometimes this axiom will have \(\implies\) in place of the second \(\iff\). But we get the other direction from the substitution property of equality see <a href="https://en.wikipedia.org/wiki/Axiom_of_extensionality#Formal_statement">here</a> for more info. </p>
+<h2 id="axiom-of-regularity-span-style-color-green-r-span-">Axiom of regularity <span style="color:green"> R </span></h2>
+<blockquote>
+<p>Every nonempty set has an element that is disjoint from itself</p>
+</blockquote>
+<p>$$\forall x(x \neq \emptyset \implies \exists y \in x (y \cap x = \emptyset))$$</p>
+<p>Is \(C\) from above a model for <span style="color:green">∅</span>, <span style="color:green"> = </span> and <span style="color:green"> R </span>? No! We have that \(a \neq \emptyset\), but there is no \(y \in a\) such that \(y \cap a = \emptyset\), because the only thing in \(a\) is \(a\), and \(a \cap a\), has at least one element, \(a\)! </p>
+<p>This axiom helps us avoid nasty situations - it lets us prove things like ‘no set is an element of itself’, and ‘there are no infinite descending sequence of sets’ such as \(a \in a \in a \in …\). Now we want some more sets.</p>
+<h2 id="axiom-of-pairing-span-style-color-green-9741-span-">Axiom of pairing <span style="color:green"> ☍ </span></h2>
+<blockquote>
+<p>For any two sets, their pair is a set</p>
+</blockquote>
+<p>$$\forall x \forall y \exists z \forall w (w \in z \iff (w = x \lor w = y))$$</p>
+<p>Here \(z\) is the set containing only \(x\) and \(y\) (denoted \(\{x, y \}\)). What if \(x = y\)? Then \(w = x \lor w = y\) simplifies to \(w = x\). Thus, <span style="color:green"> ☍ </span> also guarantees the existences of singleton sets \(\{x\}\).</p>
+<p>None of our previous models work anymore because they all had a finite number of things in the domain. If we have \(\emptyset\), then we are guaranteed to have \(\{\emptyset\}\), and \(\{\{\emptyset\}\}\), and so on. Continuing this way we get deeper sets but all the sets we can make with <span style="color:green">☍ </span> still have just 1 or 2 elements - a set with 3 or more elements is not guaranteed to exists. </p>
+<h2 id="axiom-of-union-span-style-color-green-8746-span-">Axiom of union <span style="color:green"> ∪ </span></h2>
+<blockquote>
+<p>We can flatten sets</p>
+</blockquote>
+<p>$$ \forall x \exists y \forall z \forall w [(w \in z \land z \in x) \implies w \in y]$$</p>
+<p>We can read this as: “For any set \(x\), there is another set \(y\) such that whenever \(z\) is an element of an element of \(x\), \(z \in y\)”. In mathematical notation, this axiom says that for any set \(X\), \(\bigcup X\) exists. Note it doesn’t directly assert that \(X \cup Y\) exists, but we can prove this with help from <span style="color:green">☍ </span>. </p>
+<p>Equipped with <span style="color:green"> ∪ </span>, we now guarantee the existence of some sets with more than 2 elements! </p>
+<p>For example, we can create the von Neumann ordinals. Let \(S(x)\) denote \(x \cup \{x\}\). Then \(S^n(\emptyset) = n\). The first couple von Neumann ordinals are:</p>
+<p>$$
+\begin{align<em>}
+0 &amp;= \emptyset \ 
+1 &amp;= { \emptyset }\
+2 &amp;= { \emptyset, { \emptyset } } \
+3 &amp;= { \emptyset, {\emptyset}, { \emptyset, { \emptyset } } }…\
+\end{align</em>}
+$$</p>
+<p>These von Neumann ordinals are used to represent the natural numbers, and they have some really cool properties such as \(n = \{ 0, 1, 2, … , n-1\}\), and transitivity: \(m \in n \implies m \subseteq n\). </p>
+<p>We can now make any natural number, but how about \(\mathbb{N}\), the set of natural numbers? From just <span style="color:green"> ☍ </span> and <span style="color:green"> ∪ </span>, we can’t create an element that has an infinite number of elements. </p>
+<p>Question: Are there finite sets that we can’t make with just these axioms?</p>
+<h2 id="axiom-of-subset-span-style-color-green-8838-span-">Axiom of subset <span style="color:green">⊆</span></h2>
+<blockquote>
+<p>The subset of a set is a set</p>
+</blockquote>
+<p>We’ll skip the discussion of this axiom for now. </p>
+<h2 id="axiom-of-infinity-span-style-color-green-8734-span-">Axiom of infinity <span style="color:green">∞</span></h2>
+<blockquote>
+<p>There is some set that contains all the natural numbers</p>
+</blockquote>
+<p>$$ \exists X[\emptyset \in X \land \forall y (y \in X \implies S(y) \in X)] $$</p>
+<p>This says that there is a set \(X\) that contains \(\emptyset\), and is closed under \(S\). Thus we see \(\mathbb{N} \subseteq X\). In set theory, people like to use \(\omega\) to denote the set of natural numbers. </p>
+<p>Now we have \(\mathbb{N}\) a.k.a \(\omega\). But how about \(\mathbb{R}\). Sadly \(\mathbb{R}\) is uncountable, and none of the existing axioms allow us to jump from countable sets to uncountable sets.</p>
+<h2 id="axiom-of-powerset-span-style-color-green-wp-span-">Axiom of powerset <span style="color:green">\(\wp\)</span></h2>
+<blockquote>
+<p>The powerset of a set is a set</p>
+</blockquote>
+<p>$$\forall x \exists y \forall z [z \subseteq x \iff z \in y]$$ </p>
+<p>The powerset of a set is the set of all subsets. Cantor’s theorem gives us that the cardinality of \(\wp(X)\) is strictly greater than that of \(X\). So now we are guaranteed uncountable sets such as \(\wp(\mathbb{N})\), and \(\wp(\wp(\mathbb{N}))\).</p>
+<p>Question: If all our sets were finite, does <span style="color:green">\(\wp\)</span> give us any new sets? I.e. can we simulate \(\wp\) with the other axioms when all our sets are finite?</p>
+<p>We are now guaranteed some pretty huge sets but this one is still out of reach: </p>
+<p>$$\omega + \omega = \omega \cdot 2 = {1, 2, 3,…,\omega, \omega + 1, \omega + 2,…}$$</p>
+<p>Here is a good time to introduce the Von Neumann universe. It’s defined recursively as follows:</p>
+<p>$$
+\begin{align<em>}
+V<em>0 &amp;= \emptyset \
+V</em>{n + 1} &amp;= \wp(V<em>n) \
+V</em>\omega &amp;= \bigcup_{ n &lt; \omega} V_n
+\end{align</em>}
+$$</p>
+<p>[^continues]We start with the emptyset and basically iterate \(\wp\). There are many cool things about the Von Neumann universe such as it gives a way to measure the ‘depth’ of a set (rank), and that it is transitive. Without the axiom of infinity, \(V_\omega\) which is the set of <a href="https://en.wikipedia.org/wiki/Hereditarily_finite_set">hereditarily finite sets</a>, is a model for all of the axioms of ZFC (including the following two) minus the axiom of infinity.</p>
+<p>[^continues]: It actually keeps going! But to talk about that we need to go into more details about ordinals. </p>
+<h2 id="axiom-schema-of-replacement-span-style-color-green-varphi-span-">Axiom (schema) of replacement <span style="color:green">\(\varphi\)</span></h2>
+<blockquote>
+<p>The image of a set under any definable mapping is a set. </p>
+</blockquote>
+<p>Slightly more formally, for every formula \(\varphi\), we have the following axiom:</p>
+<p>$$ \forall A (\varphi \text{ defines a function on A} \implies \text{the image of that function exists/is a set})$$</p>
+<p>This is useful because it (with the emptyset axiom) actually let’s us prove <span style="color:green">⊆</span>. More importantly, it lets us define \(\omega + \omega\) and more crazy stuff in the following way. If we define \(f(x) = \omega + x\). Then the image of \(f\) on \(\omega\) is \(\omega + \omega\).</p>
+<h2 id="axiom-of-choice-span-style-color-green-f-span-">Axiom of choice <span style="color:green">F</span></h2>
+<blockquote>
+<p>For a set of non-empty sets, the choice function exists (and is a set)</p>
+</blockquote>
+<p>This is the controversial axiom that you’ve heard about in the memes.</p>
+<p>$$ \forall X [\emptyset \notin X \implies \exists F:X \to \bigcup X(\forall A \in X (F(A) \in A))] $$</p>
+<p>In this formula \(X\) is our collection of non-empty sets and \(F\) is our choice function. \(f\) has domain \(X\) and range \(\bigcup X\), which just means it maps elements of \(X\) to elements of elements of \(X\). \(F\) being a choice function means that for any set \(A \in X, F\) maps \(A\) to some element of \(A\). An important reminder here is that the choice function guaranteed by <span style="color:green">F</span> is a set. </p>
+<p>In many cases we can create the choice function without <span style="color:green">F</span>, for example, if we have a finite collection of non-empty sets, we are guaranteed the choice function simply with the <span style="color:green"> ☍ </span>.</p>
+<p>Assuming <span style="color:green">F</span> let’s us prove some useful things such as <em>‘countable union of countable sets is countable’</em>, and <em>‘every vector space has a basis’</em>, and also some counterintuitive things like the Banach Tarski Paradox.</p>
+<h2 id="an-aside-about-consistency-redundancy">An aside about consistency, redundancy</h2>
+<p>These are the axioms of ZFC. Two important things to ask now are:</p>
+<ol>
+<li>Are these axioms consistent? (Do they let me prove \(p \land \neg p\))?</li>
+<li>Are some axioms redundant? (Can I prove one axiom with the others)?</li>
+</ol>
+<p>Gödel’s second incompleteness theorem says that ZFC can not prove its own consistency. But we can prove the consistency of some subsets of ZFC if we assume ZFC is consistent. For example, ZF proves the consistency of \(ZF\) without <span style="color:green">\(\varphi\)</span> (a.k.a Z).</p>
+<p>Some of these axioms are redundant. For example, <span style="color:green">⊆</span> can be proved using <span style="color:green">∅</span> and <span style="color:green">\(\varphi\)</span> (take a function that maps everything in the subset to itself, and everything else to some element of the subset, the image of that function is the subset). <span style="color:green"> ☍ </span> can also be proved using the other axioms. </p>
+<p><a href="https://projecteuclid.org/euclid.ndjfl/1093888220">This paper</a> dives into further detail about the consistency of sub-theories of ZF.</p>
+<h2 id="limitations-of-zfc">Limitations of ZFC</h2>
+<p>Gödel’s first incompleteness theorem tells us that if ZFC is consistent, then it is incomplete. That is, there are some statements can neither be proven nor disproven. </p>
+<p>One famous example is the continuum hypothesis, which says that any subset of the reals is either countable or has the same cardinality as \(\mathbb{R}\). That is, there is no ‘level of infinity’ between \(|\mathbb{N}|\) and \(|\mathbb{R}|\).</p>
+<p>So what happens when we encounter a statement that is independent of our system? One option would be to add either it or its negation as an axiom. But of course, this resulting system would still not be complete due to the incompleteness theorem!</p>
+</div></div><div class="footer"><div class="link"><a href="https://github.com/harrysha1029"><svg class="feather feather-github" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div><div class="link"><a href="https://www.youtube.com/channel/UCVjPFH1nsdSB03heP0Al36A?view_as=subscriber"><svg class="feather feather-youtube" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></div><div class="link"><a href="https://www.linkedin.com/in/harry-sha-374345145/"><svg class="feather feather-linkedin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></div><div class="link"><a href="https://www.facebook.com/harry.sha.12"><svg class="feather feather-facebook" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></div><div class="link"><a href="https://www.npmjs.com/package/elmstatic">Created with Elmstatic</a></div></div><link href="/styles.css" rel="stylesheet" type="text/css"><style>body {
+    padding:0px;
+    margin:0px;
+    background-color:#ffffff;
+    color:#363636;
+    font-family:Lato, sans-serif;
+    font-size:20px;
+    line-height:1.4em;
+}
+
+a {
+    color:#348aa7;
+    text-decoration:none;
+}
+
+code {
+    font-family:Inconsolata, monospace;
+}
+
+pre  code {
+    overflow-x:scroll !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:Lato, sans-serif;
+    line-height:1.1em;
+}
+
+h1 {
+    font-size:2.66667em;
+    margin-bottom:2.0202rem;
+}
+
+h2 {
+    font-size:2em;
+    margin-bottom:1.61616rem;
+}
+
+h3 {
+    font-size:1.33333em;
+    margin-bottom:1.21212rem;
+    color:#0e4f99;
+}
+
+h4 {
+    font-size:1.2em;
+    margin-bottom:0.80808rem;
+}
+
+h5, h6 {
+    font-size:1em;
+    margin-bottom:0.60606rem;
+}
+
+p {
+    margin:auto auto 1.5rem;
+}
+
+small {
+    font-size:65%;
+}
+
+.header-logo {
+    text-align:center;
+    padding:10px;
+    margin-top:-15px;
+    border-bottom:2px solid #8295a1;
+    background-color:#87ffe9;
+}
+
+.header-logo  a {
+    color:#363636;
+    margin-left:10px;
+}
+
+@media only screen and (min-width: 600px) {
+    .header-logo {
+        text-align:left;
+    }
+}
+
+.navigation {
+    text-align:center;
+    border-bottom:2px solid #8295a1;
+    background-color:#87ffe9;
+    padding:10px;
+    margin-top:-20px;
+}
+
+@media only screen and (min-width: 600px) {
+    .navigation {
+        margin-top:0px;
+    padding:0px;
+    text-align:right;
+    }
+}
+
+.navigation  ul {
+    margin:0px;
+    padding:0px;
+}
+
+@media only screen and (min-width: 600px) {
+    .navigation  ul {
+        line-height:100px;
+    }
+}
+
+.navigation  li {
+    display:inline-block;
+    margin-right:40px;
+}
+
+.navigation  a {
+    color:#363636;
+}
+
+.content {
+    max-width:100vw;
+}
+
+.footer {
+    text-align:center;
+    border-top:2px solid #2f4858;
+    background-color:#87f1ff;
+}
+
+@media only screen and (min-width: 600px) {
+    .footer {
+        line-height:80px;
+    text-align:right;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .footer  .link {
+        display:inline-block;
+    margin-right:20px;
+    }
+}
+
+.footer  a {
+    color:#000000;
+    text-decoration:none;
+}
+
+.footer  svg {
+    padding-right:5px;
+    vertical-align:baseline;
+}
+
+.post-metadata {
+    margin-top:-0.5em;
+    margin-bottom:2em;
+}
+
+.post-metadata  a, .post-metadata  span {
+    display:inline-block;
+    margin-right:5px;
+}
+
+.post-metadata  a {
+    border:1px solid #e0e0e0;
+    border-radius:3px;
+    background-color:#f2fae8;
+    padding-left:5px;
+    padding-right:5px;
+}</style></body></html>
