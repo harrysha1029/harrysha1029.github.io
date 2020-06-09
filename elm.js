@@ -9419,7 +9419,7 @@ var $author$project$Page$markdown = function (s) {
 	var mdOptions = {
 		b3: $elm$core$Maybe$Just('elm'),
 		b7: $elm$core$Maybe$Just(
-			{b_: false, cr: false}),
+			{b_: false, cr: true}),
 		cm: false,
 		cp: true
 	};

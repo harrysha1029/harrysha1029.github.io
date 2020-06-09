@@ -1,6 +1,6 @@
 ---
 title:  "Haskell Concepts with Sets"
-tags: math set_theory
+tags: math cs
 ---
 In this post we'll explore some Haskell and functional programming concepts with set theory. Our goal here is to implement a type that represents a set, and build the Von Neumann universe up to \\(V_{\omega}\\). 
 
@@ -22,18 +22,18 @@ This defines `Set` recursively as a list of `Set`, and we can create sets using 
 A typeclass in Haskell is like an adjective describing the type. Common typeclasses are `Ord` (can be ordered), `Eq` (can be equated), `Show` (can be converted to string). More precisely, a typeclass defines a set of functions that instances implement, somewhat like an interface. To save some work, we can often use the deriving keyword when defining our data type. For example we might do 
 `data Set = Elems [Set] deriving (Eq, Show)`. These will use the default implementations which are often sufficient. Loading this up in ghci we get
 
-<pre><code class="language-haskell">
-> data Set = Elems [Set] deriving (Eq, Show)
-> emptySet = Elems []
-> emptySet
+<pre class="command-line language-bash" data-prompt="Prelude>" data-output="4,6,9,11"><code class="language-haskell">
+data Set = Elems [Set] deriving (Eq, Show)
+emptySet = Elems []
+emptySet
 Elems []
-> emptySet == emptySet
+emptySet == emptySet
 True
-> a = Elems [Elems [], Elems []]
-> a 
+a = Elems [Elems [], Elems []]
+a 
 Elems [Elems [], Elems []]
-> b = Elems [Elems []] 
-> a == b
+b = Elems [Elems []] 
+a == b
 False 
 </code></pre>
 
@@ -60,11 +60,11 @@ any :: Foldable t => (a -> Bool) -> t a -> Bool
 
 Think of `t` as a list for now. `any` takes as input a predicate and a list, and returns true if any item in the list makes the predicate true. and `all` works analogously. Thus `any (\a -> p a) x` translates to \\(\exists a \in x. p(a)\\), and `all (\a -> p a) x` translates to \\(\forall a \in x. p(a)\\). As a result of this definition, we have:
 
-<pre><code class="language-haskell">
-> Elems [Elems []] == Elems [Elems [], Elems []] 
-True -- don't care about repetition
-> Elems [Elems [Elems []], Elems []] == Elems [Elems [], Elems [Elems []]]
-True -- unordered
+<pre class="command-line" data-prompt="Prelude>" data-output="2, 4"><code class="language-haskell">
+Elems [Elems []] == Elems [Elems [], Elems []] 
+True
+Elems [Elems [Elems []], Elems []] == Elems [Elems [], Elems [Elems []]]
+True
 </code></pre>
 
 Another interesting thing is that one might think that there is a problem with circular definitions here. We are using `subset` to define `==`, but also `==` in the definition of `subset`. Turns out this is ok as it is in fact a pairwise recursive definition.
