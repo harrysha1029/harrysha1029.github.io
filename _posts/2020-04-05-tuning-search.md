@@ -3,10 +3,10 @@ title:  "Song Order - Guitar Tunings and the Travelling Salesperson"
 tags: music math cs
 ---
 
-I play gigs with my acoustic guitar every now and then, and a lot of the pieces I play feature **weird** tunings. So here's the problem: tuning from one tuning to another very different tuning not only takes a long time it makes the guitar go out of tune more quickly and also increases the risk of broken strings. Thus I want to order my songs such that each jump between tunings isn't that large!
+I play gigs with my acoustic guitar every now and then, and a lot of the pieces I play feature **weird** tunings. So here's the problem: tuning from one tuning to another very different tuning not only takes a long time, it makes the guitar go out of tune more quickly and also increases the risk of broken strings. Thus I want to order my songs such that the total amount of tuning I have to do is minimized.
 
 ## Definitions
-Let's start with some definitions! First in math, then in code. 
+Let's start with some definitions!
 * Associate each key on the piano with an integer starting with A0 = 0, Bb0 = 1... and so on.
 * Define a tuning to be a vector a 6 pitches.
 * For any tunings x, y define their distance to be the *'manhattan distance'* or \\(L_1\\) distance:
@@ -23,7 +23,7 @@ struct Pitch(Note, i32); // Note, Octave
 type Tuning = [Pitch; 6];
 ```
 
-So to start, we have the `Notes` type which can take on one of 12 values. Then, we have the `Pitch` type which is represented as a tuple containing a `Note` and an octave, e.g. A4. A *Tuning* is then a list of 6 *Pitches* (one for each string on the guitar). We associate `Pitch` values with integers, and define distances as follows.
+So to start, we have the `Notes` type which can take on one of 12 values. Then, we have the `Pitch` type which is represented as a tuple containing a `Note` and an octave, e.g. A4. We associate `Pitch` values with integers, and define distances as follows.
 
 ```rust
 fn note2num(note: &Note) -> i32 {
