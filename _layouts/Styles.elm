@@ -6,8 +6,12 @@ import Css.Media as Media exposing (..)
 import Html exposing (Html)
 import Html.Styled
 
-header_color = hex "87ffe9"
-footer_color = hex "87f1ff"
+midnight_green_eagle_green=hex "1a535c"
+medium_turquoise=hex "70d7d0"
+mint_cream=hex "f7fff7"
+bittersweet=hex "FF8585"
+naples_yellow=hex "ffe66d"
+
 white = hex "ffffff"
 lightGrey = hex "b3b3b3"
 black = hex "363636"
@@ -47,7 +51,7 @@ styles =
             ]
         , h1 [ fontSize <| Css.em 2.66667, marginBottom <| rem 2.0202 ]
         , h2 [ fontSize <| Css.em 2.0, marginBottom <| rem 1.61616 ]
-        , h3 [ fontSize <| Css.em 1.33333, marginBottom <| rem 1.21212, Css.color <| hex "0e4f99" ]
+        , h3 [ fontSize <| Css.em 1.33333, marginBottom <| rem 1.21212, Css.color <| midnight_green_eagle_green ]
         , h4 [ fontSize <| Css.em 1.2, marginBottom <| rem 0.80808 ]
         , each [ h5, h6 ] [ fontSize <| Css.em 1.0, marginBottom <| rem 0.60606 ]
         , p [ margin3 auto auto (rem 1.5) ]
@@ -57,7 +61,7 @@ styles =
             , padding <| px 10
             , marginTop <| px -15
             , borderBottom3 (px 2) solid (hex "8295a1")
-            , backgroundColor header_color
+            , backgroundColor medium_turquoise
             , wideScreen [textAlign left]
             , descendants [ a [
                                 Css.color black, 
@@ -68,7 +72,7 @@ styles =
         , class "navigation"
             [ textAlign center
             , borderBottom3 (px 2) solid (hex "8295a1")
-            , backgroundColor header_color
+            , backgroundColor medium_turquoise
             , padding <| px 10
             , marginTop <| px -20
             , descendants
@@ -91,7 +95,7 @@ styles =
         , class "footer"
             [ textAlign center
             , borderTop3 (px 2) solid (hex "2f4858")
-            , backgroundColor footer_color
+            , backgroundColor bittersweet
             , descendants
                 [ a [ Css.color <| hex "000000", textDecoration none ]
                 , svg [ paddingRight <| px 5, verticalAlign baseline ]

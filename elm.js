@@ -6239,6 +6239,7 @@ var $rtfeldman$elm_css$Css$hex = function (str) {
 	}
 	return $rtfeldman$elm_css$Css$erroneousHex(str);
 };
+var $author$project$Styles$bittersweet = $rtfeldman$elm_css$Css$hex('FF8585');
 var $author$project$Styles$black = $rtfeldman$elm_css$Css$hex('363636');
 var $rtfeldman$elm_css$Css$Global$body = $rtfeldman$elm_css$Css$Global$typeSelector('body');
 var $rtfeldman$elm_css$Css$prop3 = F4(
@@ -6499,7 +6500,6 @@ var $rtfeldman$elm_css$Css$fontFamilies = A2(
 	$rtfeldman$elm_css$Css$prop1('font-family'),
 	$rtfeldman$elm_css$Css$stringsToValue);
 var $rtfeldman$elm_css$Css$fontSize = $rtfeldman$elm_css$Css$prop1('font-size');
-var $author$project$Styles$footer_color = $rtfeldman$elm_css$Css$hex('87f1ff');
 var $elm$core$List$any = F2(
 	function (isOkay, list) {
 		any:
@@ -8242,7 +8242,6 @@ var $rtfeldman$elm_css$Css$Global$h3 = $rtfeldman$elm_css$Css$Global$typeSelecto
 var $rtfeldman$elm_css$Css$Global$h4 = $rtfeldman$elm_css$Css$Global$typeSelector('h4');
 var $rtfeldman$elm_css$Css$Global$h5 = $rtfeldman$elm_css$Css$Global$typeSelector('h5');
 var $rtfeldman$elm_css$Css$Global$h6 = $rtfeldman$elm_css$Css$Global$typeSelector('h6');
-var $author$project$Styles$header_color = $rtfeldman$elm_css$Css$hex('87ffe9');
 var $elm$core$String$endsWith = _String_endsWith;
 var $rtfeldman$elm_css$Css$makeImportant = function (str) {
 	return A2(
@@ -8321,6 +8320,8 @@ var $rtfeldman$elm_css$Css$marginLeft = $rtfeldman$elm_css$Css$prop1('margin-lef
 var $rtfeldman$elm_css$Css$marginRight = $rtfeldman$elm_css$Css$prop1('margin-right');
 var $rtfeldman$elm_css$Css$marginTop = $rtfeldman$elm_css$Css$prop1('margin-top');
 var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
+var $author$project$Styles$medium_turquoise = $rtfeldman$elm_css$Css$hex('70d7d0');
+var $author$project$Styles$midnight_green_eagle_green = $rtfeldman$elm_css$Css$hex('1a535c');
 var $rtfeldman$elm_css$Css$Media$feature = F2(
 	function (key, _v0) {
 		var value = _v0.a5;
@@ -9033,8 +9034,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$em(1.33333)),
 							$rtfeldman$elm_css$Css$marginBottom(
 							$rtfeldman$elm_css$Css$rem(1.21212)),
-							$rtfeldman$elm_css$Css$color(
-							$rtfeldman$elm_css$Css$hex('0e4f99'))
+							$rtfeldman$elm_css$Css$color($author$project$Styles$midnight_green_eagle_green)
 						])),
 					$rtfeldman$elm_css$Css$Global$h4(
 					_List_fromArray(
@@ -9085,7 +9085,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$px(2),
 							$rtfeldman$elm_css$Css$solid,
 							$rtfeldman$elm_css$Css$hex('8295a1')),
-							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$header_color),
+							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$medium_turquoise),
 							wideScreen(
 							_List_fromArray(
 								[
@@ -9114,7 +9114,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$px(2),
 							$rtfeldman$elm_css$Css$solid,
 							$rtfeldman$elm_css$Css$hex('8295a1')),
-							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$header_color),
+							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$medium_turquoise),
 							$rtfeldman$elm_css$Css$padding(
 							$rtfeldman$elm_css$Css$px(10)),
 							$rtfeldman$elm_css$Css$marginTop(
@@ -9178,7 +9178,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$px(2),
 							$rtfeldman$elm_css$Css$solid,
 							$rtfeldman$elm_css$Css$hex('2f4858')),
-							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$footer_color),
+							$rtfeldman$elm_css$Css$backgroundColor($author$project$Styles$bittersweet),
 							$rtfeldman$elm_css$Css$Global$descendants(
 							_List_fromArray(
 								[
