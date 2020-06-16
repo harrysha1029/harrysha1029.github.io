@@ -5381,7 +5381,9 @@ var $author$project$Elmstatic$htmlTemplate = F2(
 							$author$project$Elmstatic$stylesheet('/prism.css'),
 							$author$project$Elmstatic$script('/prism.js'),
 							$author$project$Elmstatic$script('https://polyfill.io/v3/polyfill.min.js?features=es6'),
-							$author$project$Elmstatic$script('https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'),
+							$author$project$Elmstatic$script('https://cdn.plot.ly/plotly-latest.min.js'),
+							$author$project$Elmstatic$script('/jquery-3.5.1.min.js'),
+							$author$project$Elmstatic$script('/load_mathjax.js'),
 							$author$project$Elmstatic$stylesheet('//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata')
 						])),
 					A3($elm$html$Html$node, 'body', _List_Nil, contentNodes)

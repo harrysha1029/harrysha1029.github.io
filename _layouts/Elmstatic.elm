@@ -143,7 +143,9 @@ htmlTemplate title contentNodes =
             , stylesheet "/prism.css"
             , script "/prism.js"
             , script "https://polyfill.io/v3/polyfill.min.js?features=es6"
-            , script "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+            , script "https://cdn.plot.ly/plotly-latest.min.js"
+            , script "/jquery-3.5.1.min.js"
+            , script "/load_mathjax.js"
             , stylesheet "//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata"
             ]
         , node "body" [] contentNodes
