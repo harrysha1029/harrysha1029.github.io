@@ -16,7 +16,7 @@ white = hex "ffffff"
 lightGrey = hex "b3b3b3"
 black = hex "363636"
 
-mainFont = "Georgia"
+mainFont = "Lora"
 
 styles : Html msg
 styles =

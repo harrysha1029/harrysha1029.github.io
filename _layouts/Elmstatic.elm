@@ -151,7 +151,7 @@ htmlTemplate title contentNodes =
             , script "https://cdn.plot.ly/plotly-latest.min.js"
             , script "/jquery-3.5.1.min.js"
             , script "/load_mathjax.js"
-            , stylesheet "//fonts.googleapis.com/css?family=Georgia|Lato|Open+Sans|Proza+Libre|Inconsolata"
+            , stylesheet "//fonts.googleapis.com/css?family=Lora|Open+Sans|Proza+Libre|Inconsolata"
             ]
         , node "body" [] contentNodes
         ]

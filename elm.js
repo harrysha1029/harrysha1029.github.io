@@ -5384,7 +5384,7 @@ var $author$project$Elmstatic$htmlTemplate = F2(
 							$author$project$Elmstatic$script('https://cdn.plot.ly/plotly-latest.min.js'),
 							$author$project$Elmstatic$script('/jquery-3.5.1.min.js'),
 							$author$project$Elmstatic$script('/load_mathjax.js'),
-							$author$project$Elmstatic$stylesheet('//fonts.googleapis.com/css?family=Georgia|Lato|Open+Sans|Proza+Libre|Inconsolata')
+							$author$project$Elmstatic$stylesheet('//fonts.googleapis.com/css?family=Lora|Open+Sans|Proza+Libre|Inconsolata')
 						])),
 					A3($elm$html$Html$node, 'body', _List_Nil, contentNodes)
 				]));
@@ -8317,7 +8317,7 @@ var $rtfeldman$elm_css$Css$inlineBlock = {f: 0, a5: 'inline-block'};
 var $rtfeldman$elm_css$Css$left = $rtfeldman$elm_css$Css$prop1('left');
 var $rtfeldman$elm_css$Css$Global$li = $rtfeldman$elm_css$Css$Global$typeSelector('li');
 var $rtfeldman$elm_css$Css$lineHeight = $rtfeldman$elm_css$Css$prop1('line-height');
-var $author$project$Styles$mainFont = 'Georgia';
+var $author$project$Styles$mainFont = 'Lora';
 var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
 var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
 var $rtfeldman$elm_css$Css$marginBottom = $rtfeldman$elm_css$Css$prop1('margin-bottom');
