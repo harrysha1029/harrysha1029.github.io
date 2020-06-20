@@ -16,6 +16,8 @@ white = hex "ffffff"
 lightGrey = hex "b3b3b3"
 black = hex "363636"
 
+mainFont = "Georgia"
+
 styles : Html msg
 styles =
     let
@@ -32,21 +34,22 @@ styles =
             , margin <| px 0
             , backgroundColor <| hex "ffffff"
             , Css.color <| hex "363636"
-            , fontFamilies [ "Lato", .value sansSerif ]
+            , fontFamilies [ mainFont, .value sansSerif ]
             , fontSize <| px 20
-            , lineHeight <| Css.em 1.4
+            , lineHeight <| Css.em 1.6
             ]
         , a
             [ Css.color <| hex "348aa7"
             , textDecoration none
             ]
         , code codeStyle
+        , li [margin <| px 5 ]
         , Css.Global.pre
             [ descendants
                 [ code [ important <| overflowX Css.scroll ] ]
             ]
         , each [ h1, h2, h3, h4, h5, h6 ]
-            [ fontFamilies [ "Lato", .value sansSerif ]
+            [ fontFamilies [ mainFont, .value sansSerif ]
             , lineHeight <| Css.em 1.1
             ]
         , h1 [ fontSize <| Css.em 2.66667, marginBottom <| rem 2.0202 ]
@@ -55,6 +58,9 @@ styles =
         , h4 [ fontSize <| Css.em 1.2, marginBottom <| rem 0.80808 ]
         , each [ h5, h6 ] [ fontSize <| Css.em 1.0, marginBottom <| rem 0.60606 ]
         , p [ margin3 auto auto (rem 1.5) ]
+        , Css.Global.table [borderCollapse collapse]
+        , each [ Css.Global.table, th, td ] [ borderBottom3 (px 1) solid (rgb 120 120 120), padding <| px 10, paddingRight <| px 30, textAlign left ]
+        , Css.Global.table [marginBottom (px 30)]
         , Css.Global.small [ fontSize <| pct 65 ]
         , class "header-logo"
             [ textAlign center
@@ -91,7 +97,6 @@ styles =
                 ]
             , wideScreen [ marginTop <| px 0, padding <| px 0, textAlign right ]
             ]
-        , class "content" [ Css.maxWidth <| vw 100 ]
         , class "footer"
             [ textAlign center
             , borderTop3 (px 2) solid (hex "2f4858")

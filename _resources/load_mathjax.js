@@ -9,8 +9,7 @@ window.MathJax = {
       ["\\[", "\\]"],
     ],
     macros : {
-        // example... usage $\bold{wef}$.
-        bold: ["{\\bf #1}", 1] 
+        bold: ["{\\bf #1}", 1], 
     }
   },
   svg: {

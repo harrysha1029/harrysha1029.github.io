@@ -1,7 +1,9 @@
 ---
-title:  "Song Order - Guitar Tunings and the Travelling Salesperson"
+title:  "The Travelling Guitar Salesperson"
 tags: music math cs
 ---
+
+
 
 I play gigs with my acoustic guitar every now and then, and a lot of the pieces I play feature **weird** tunings. So here's the problem: tuning from one tuning to another very different tuning not only takes a long time, it makes the guitar go out of tune more quickly and also increases the risk of broken strings. Thus I want to order my songs such that the total amount of tuning I have to do is minimized.
 

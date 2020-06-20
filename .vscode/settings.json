@@ -1,0 +1,17 @@
+{
+    "cSpell.ignoreWords": [
+        "matplotlib"
+    ],
+    "cSpell.words": [
+        "Dask",
+        "Dataset",
+        "Groupby",
+        "Jupyter",
+        "cond",
+        "dtype",
+        "fips",
+        "hella",
+        "kwargs",
+        "naics"
+    ]
+}

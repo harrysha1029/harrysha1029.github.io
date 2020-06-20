@@ -1,11 +1,9 @@
 ---
 title: "Music + Audio Production in Logic Pro X (Udemy) Notes"
-tags: music
+tags: music notes
 ---
 
 ## Intro
-$\bold{x+y}$
-\\(wefoij\\)
 I like taking notes in markdown and this website is an easy way to render markdown :)
 
 ## Audio Production for Beginners

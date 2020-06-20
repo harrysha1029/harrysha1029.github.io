@@ -12,6 +12,7 @@ module Elmstatic exposing
     , inlineScript
     , layout
     , script
+    , defScript
     , stylesheet
     )
 
@@ -121,6 +122,10 @@ script : String -> Html Never
 script src =
     node "citatsmle-script" [ attribute "src" src ] []
 
+defScript : String -> Html Never
+defScript src =
+    node "citatsmle-script" [ attribute "src" src, attribute "defer" ""] []
+
 
 inlineScript : String -> Html Never
 inlineScript js =
@@ -146,7 +151,7 @@ htmlTemplate title contentNodes =
             , script "https://cdn.plot.ly/plotly-latest.min.js"
             , script "/jquery-3.5.1.min.js"
             , script "/load_mathjax.js"
-            , stylesheet "//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata"
+            , stylesheet "//fonts.googleapis.com/css?family=Georgia|Lato|Open+Sans|Proza+Libre|Inconsolata"
             ]
         , node "body" [] contentNodes
         ]

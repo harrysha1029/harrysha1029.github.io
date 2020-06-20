@@ -35,4 +35,4 @@ main =
             Ok <|
                 Page.layout
                     content.title
-                    [ metadataHtml content, Page.markdown content.content ]
+                    [ defScript "/toc.js", metadataHtml content, Page.markdown content.content ]

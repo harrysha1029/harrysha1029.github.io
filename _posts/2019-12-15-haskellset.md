@@ -1,5 +1,5 @@
 ---
-title:  "Haskell Concepts with Sets"
+title:  "Haskell and Sets"
 tags: math cs
 ---
 In this post we'll explore some Haskell and functional programming concepts with set theory. Our goal here is to implement a type that represents a set, and build the Von Neumann universe up to \\(V_{\omega}\\). 

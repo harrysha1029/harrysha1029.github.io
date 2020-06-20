@@ -5384,7 +5384,7 @@ var $author$project$Elmstatic$htmlTemplate = F2(
 							$author$project$Elmstatic$script('https://cdn.plot.ly/plotly-latest.min.js'),
 							$author$project$Elmstatic$script('/jquery-3.5.1.min.js'),
 							$author$project$Elmstatic$script('/load_mathjax.js'),
-							$author$project$Elmstatic$stylesheet('//fonts.googleapis.com/css?family=Lato|Open+Sans|Proza+Libre|Inconsolata')
+							$author$project$Elmstatic$stylesheet('//fonts.googleapis.com/css?family=Georgia|Lato|Open+Sans|Proza+Libre|Inconsolata')
 						])),
 					A3($elm$html$Html$node, 'body', _List_Nil, contentNodes)
 				]));
@@ -6257,6 +6257,7 @@ var $rtfeldman$elm_css$Css$prop3 = F4(
 	});
 var $rtfeldman$elm_css$Css$border3 = $rtfeldman$elm_css$Css$prop3('border');
 var $rtfeldman$elm_css$Css$borderBottom3 = $rtfeldman$elm_css$Css$prop3('border-bottom');
+var $rtfeldman$elm_css$Css$borderCollapse = $rtfeldman$elm_css$Css$prop1('border-collapse');
 var $rtfeldman$elm_css$Css$borderRadius = $rtfeldman$elm_css$Css$prop1('border-radius');
 var $rtfeldman$elm_css$Css$borderTop3 = $rtfeldman$elm_css$Css$prop3('border-top');
 var $rtfeldman$elm_css$Css$center = $rtfeldman$elm_css$Css$prop1('center');
@@ -6287,6 +6288,7 @@ var $rtfeldman$elm_css$Css$Global$class = F2(
 					])));
 	});
 var $rtfeldman$elm_css$Css$Global$code = $rtfeldman$elm_css$Css$Global$typeSelector('code');
+var $rtfeldman$elm_css$Css$collapse = {be: 0, a5: 'collapse', aD: 0};
 var $rtfeldman$elm_css$Css$color = function (c) {
 	return A2($rtfeldman$elm_css$Css$property, 'color', c.a5);
 };
@@ -8315,13 +8317,13 @@ var $rtfeldman$elm_css$Css$inlineBlock = {f: 0, a5: 'inline-block'};
 var $rtfeldman$elm_css$Css$left = $rtfeldman$elm_css$Css$prop1('left');
 var $rtfeldman$elm_css$Css$Global$li = $rtfeldman$elm_css$Css$Global$typeSelector('li');
 var $rtfeldman$elm_css$Css$lineHeight = $rtfeldman$elm_css$Css$prop1('line-height');
+var $author$project$Styles$mainFont = 'Georgia';
 var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
 var $rtfeldman$elm_css$Css$margin3 = $rtfeldman$elm_css$Css$prop3('margin');
 var $rtfeldman$elm_css$Css$marginBottom = $rtfeldman$elm_css$Css$prop1('margin-bottom');
 var $rtfeldman$elm_css$Css$marginLeft = $rtfeldman$elm_css$Css$prop1('margin-left');
 var $rtfeldman$elm_css$Css$marginRight = $rtfeldman$elm_css$Css$prop1('margin-right');
 var $rtfeldman$elm_css$Css$marginTop = $rtfeldman$elm_css$Css$prop1('margin-top');
-var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
 var $author$project$Styles$medium_turquoise = $rtfeldman$elm_css$Css$hex('70d7d0');
 var $author$project$Styles$midnight_green_eagle_green = $rtfeldman$elm_css$Css$hex('1a535c');
 var $rtfeldman$elm_css$Css$Media$feature = F2(
@@ -8354,6 +8356,28 @@ var $rtfeldman$elm_css$Css$PxUnits = 0;
 var $rtfeldman$elm_css$Css$px = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, 0, 'px');
 var $rtfeldman$elm_css$Css$RemUnits = 0;
 var $rtfeldman$elm_css$Css$rem = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, 0, 'rem');
+var $rtfeldman$elm_css$Css$cssFunction = F2(
+	function (funcName, args) {
+		return funcName + ('(' + (A2($elm$core$String$join, ', ', args) + ')'));
+	});
+var $rtfeldman$elm_css$Css$rgb = F3(
+	function (r, g, b) {
+		return {
+			ap: 1,
+			ar: b,
+			w: 0,
+			at: g,
+			ay: r,
+			a5: A2(
+				$rtfeldman$elm_css$Css$cssFunction,
+				'rgb',
+				A2(
+					$elm$core$List$map,
+					$elm$core$String$fromInt,
+					_List_fromArray(
+						[r, g, b])))
+		};
+	});
 var $rtfeldman$elm_css$Css$right = $rtfeldman$elm_css$Css$prop1('right');
 var $rtfeldman$elm_css$Css$sansSerif = {K: 0, a5: 'sans-serif'};
 var $rtfeldman$elm_css$Css$Structure$Screen = 1;
@@ -8363,6 +8387,8 @@ var $rtfeldman$elm_css$Css$Global$small = $rtfeldman$elm_css$Css$Global$typeSele
 var $rtfeldman$elm_css$Css$solid = {n: 0, R: 0, a5: 'solid'};
 var $rtfeldman$elm_css$Css$Global$span = $rtfeldman$elm_css$Css$Global$typeSelector('span');
 var $rtfeldman$elm_css$Css$Global$svg = $rtfeldman$elm_css$Css$Global$typeSelector('svg');
+var $rtfeldman$elm_css$Css$Global$table = $rtfeldman$elm_css$Css$Global$typeSelector('table');
+var $rtfeldman$elm_css$Css$Global$td = $rtfeldman$elm_css$Css$Global$typeSelector('td');
 var $rtfeldman$elm_css$Css$Internal$property = F2(
 	function (key, value) {
 		return $rtfeldman$elm_css$Css$Preprocess$AppendProperty(key + (':' + value));
@@ -8433,6 +8459,7 @@ var $rtfeldman$elm_css$Css$textAlign = function (fn) {
 		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
 };
 var $rtfeldman$elm_css$Css$textDecoration = $rtfeldman$elm_css$Css$prop1('text-decoration');
+var $rtfeldman$elm_css$Css$Global$th = $rtfeldman$elm_css$Css$Global$typeSelector('th');
 var $rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles = F2(
 	function (_v0, styles) {
 		var newStyles = _v0.b;
@@ -8915,8 +8942,6 @@ var $rtfeldman$elm_css$Css$verticalAlign = function (fn) {
 		'vertical-align',
 		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
 };
-var $rtfeldman$elm_css$Css$VwUnits = 0;
-var $rtfeldman$elm_css$Css$vw = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, 0, 'vw');
 var $rtfeldman$elm_css$Css$Preprocess$WithMedia = F2(
 	function (a, b) {
 		return {$: 4, a: a, b: b};
@@ -8964,7 +8989,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$fontFamilies(
 							_List_fromArray(
 								[
-									'Lato',
+									$author$project$Styles$mainFont,
 									function ($) {
 									return $.a5;
 								}($rtfeldman$elm_css$Css$sansSerif)
@@ -8972,7 +8997,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$fontSize(
 							$rtfeldman$elm_css$Css$px(20)),
 							$rtfeldman$elm_css$Css$lineHeight(
-							$rtfeldman$elm_css$Css$em(1.4))
+							$rtfeldman$elm_css$Css$em(1.6))
 						])),
 					$rtfeldman$elm_css$Css$Global$a(
 					_List_fromArray(
@@ -8982,6 +9007,12 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$textDecoration($rtfeldman$elm_css$Css$none)
 						])),
 					$rtfeldman$elm_css$Css$Global$code(codeStyle),
+					$rtfeldman$elm_css$Css$Global$li(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$margin(
+							$rtfeldman$elm_css$Css$px(5))
+						])),
 					$rtfeldman$elm_css$Css$Global$pre(
 					_List_fromArray(
 						[
@@ -9005,7 +9036,7 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$fontFamilies(
 							_List_fromArray(
 								[
-									'Lato',
+									$author$project$Styles$mainFont,
 									function ($) {
 									return $.a5;
 								}($rtfeldman$elm_css$Css$sansSerif)
@@ -9065,6 +9096,34 @@ var $author$project$Styles$styles = function () {
 							$rtfeldman$elm_css$Css$auto,
 							$rtfeldman$elm_css$Css$auto,
 							$rtfeldman$elm_css$Css$rem(1.5))
+						])),
+					$rtfeldman$elm_css$Css$Global$table(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$borderCollapse($rtfeldman$elm_css$Css$collapse)
+						])),
+					A2(
+					$rtfeldman$elm_css$Css$Global$each,
+					_List_fromArray(
+						[$rtfeldman$elm_css$Css$Global$table, $rtfeldman$elm_css$Css$Global$th, $rtfeldman$elm_css$Css$Global$td]),
+					_List_fromArray(
+						[
+							A3(
+							$rtfeldman$elm_css$Css$borderBottom3,
+							$rtfeldman$elm_css$Css$px(1),
+							$rtfeldman$elm_css$Css$solid,
+							A3($rtfeldman$elm_css$Css$rgb, 120, 120, 120)),
+							$rtfeldman$elm_css$Css$padding(
+							$rtfeldman$elm_css$Css$px(10)),
+							$rtfeldman$elm_css$Css$paddingRight(
+							$rtfeldman$elm_css$Css$px(30)),
+							$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$left)
+						])),
+					$rtfeldman$elm_css$Css$Global$table(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$marginBottom(
+							$rtfeldman$elm_css$Css$px(30))
 						])),
 					$rtfeldman$elm_css$Css$Global$small(
 					_List_fromArray(
@@ -9160,14 +9219,6 @@ var $author$project$Styles$styles = function () {
 									$rtfeldman$elm_css$Css$px(0)),
 									$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$right)
 								]))
-						])),
-					A2(
-					$rtfeldman$elm_css$Css$Global$class,
-					'content',
-					_List_fromArray(
-						[
-							$rtfeldman$elm_css$Css$maxWidth(
-							$rtfeldman$elm_css$Css$vw(100))
 						])),
 					A2(
 					$rtfeldman$elm_css$Css$Global$class,
@@ -9409,6 +9460,17 @@ var $author$project$Posts$main = function () {
 		});
 }();
 var $author$project$Tag$main = $author$project$Posts$main;
+var $author$project$Elmstatic$defScript = function (src) {
+	return A3(
+		$elm$html$Html$node,
+		'citatsmle-script',
+		_List_fromArray(
+			[
+				A2($elm$html$Html$Attributes$attribute, 'src', src),
+				A2($elm$html$Html$Attributes$attribute, 'defer', '')
+			]),
+		_List_Nil);
+};
 var $elm$core$Maybe$isJust = function (maybe) {
 	if (!maybe.$) {
 		return true;
@@ -9444,6 +9506,7 @@ var $author$project$Post$main = A2(
 				content.al,
 				_List_fromArray(
 					[
+						$author$project$Elmstatic$defScript('/toc.js'),
 						$author$project$Post$metadataHtml(content),
 						$author$project$Page$markdown(content.bi)
 					])));
