@@ -12,11 +12,11 @@ Completed a remote internship at Locus Analytics during the COVID pandemic, wher
 Modelled granular employment levels by occupation and designed a max-flow based algorithm to concord different versions of industry and occupation labels (NAICS, SOC). 
 _______
 
-### [Stanford](https://cs.stanford.edu/): Teaching Assistant CS 255 - Cryptography *(2020 Winter)*
+### [Stanford](https://crypto.stanford.edu/~dabo/cs255/): Teaching Assistant CS 255 - Cryptography *(2020 Winter)*
 I was a TA for the cryptography class at Stanford. Hosted office hours, graded homework, and taught sections. Really enjoyed this experience because I love teaching, and the content is also something I am very interested in.
 _______
 
-### [Akuna Captial](https://akunacapital.com/): Software Developer Intern *(2019 Summer)*
+### [Akuna Capital](https://akunacapital.com/): Software Developer Intern *(2019 Summer)*
 Designed and implemented a workflow framework for risk analysts using Docker and Apache Airflow. Also wrote an analysis for PnL covariance.
 _______
 
