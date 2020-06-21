@@ -1,12 +1,12 @@
 ---
-title: "Harmony Notes"
+title: "Harmony"
 tags: music notes
 ---
 
 ## Intro
-Here are some notes from Berklee's Harmony Course. You can find the course PDF's [here](http://davidvaldez.blogspot.com/2006/04/berklee-jazz-harmony-1-4.html).
+Here are some notes from Berklee's Harmony Course. You can find the course PDFs [here](http://davidvaldez.blogspot.com/2006/04/berklee-jazz-harmony-1-4.html).
 
-## Basics
+## Intervals
 ### Inverting Intervals
 * 9 minus original interval = inversion interval
 * Major and minor swap

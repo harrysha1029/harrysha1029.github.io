@@ -143,17 +143,22 @@ $$ x \in L \iff \forall u \in \OO^{q(|x|)} \exists v \in \OO^{q(|x|)} M(x, u, v)
 ## Circuits
 Circuits are another model of computation that is non-uniform, which means we can have a different algorithm for each input size.
 
-A circuit can have $\land, \lor$, and $\neg$ gates, and the size of the circuit is defined to be the number of nodes in the circuit. We allow $\land$ and $\lor$ to have fan-in.
+A circuit can have $\land, \lor$, and $\neg$ gates, and the size of the circuit is defined to be the number of nodes in the circuit.
 
 ### Definitions
 * A $T(n)$ sized circuit family is a sequence $\{C\_n\}\_{n\in \N}$ of boolean circuits, where $C\_n$ has $n$ inputs and a single output such that $|C_n| \leq T(n)$ for every $n$.
 * $\PPOLY = \bigcup_c \SIZE(n^c)$ is the class of languages that are decidable by polynomial sized circuit families. 
 * Alternatively, we can define $\PPOLY$ as Turing Machines that *'take advice'*. This means that the Turing Machine gets some poly-length string that is fixed for each input length as input. 
 * A circuit family is *logspace uniform* if there is an implicitly logspace computable function mapping $1^n$ to the description of the circuit $C_n$.
+* This is useful because a language has logspace-uniform circuits of polynomial size iff it is in P.
+
+### Parallel Computation
+* $L \in \NC^i$ if there there is some c $c>0$ such that it can be decided by a logspace-uniform family of circuits $\{C\_n\}$ where $C\_n$ has size $O(n^c)$, and depth $O(log^i(n))$. $\NC = \bigcup \NC^i$
+* $\AC$ is defined analogously except gates are allowed to have unbounded fanin.
+* It is believed that $P \neq NC$.
 
 ### Theorems
-* Karp-Lipton. If $\NP \subseteq \PPOLY$ then $\PH = \Sigma\_2$. 
-
+* Karp-Lipton. If $\NP \subseteq \PPOLY$ then $\PH = \Sigma\_2$. TODO Proof.
 
 ## Randomness
 ### Definitions
@@ -179,8 +184,8 @@ TODO
 TODO
 ### $\BPP \subset \PH$
 TODO
-
-
+### Hardness vs Randomness
+TODO
 
 
 ## Interactivity
