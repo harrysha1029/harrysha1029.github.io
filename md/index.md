@@ -9,7 +9,7 @@ I'm a college student and aspiring researcher from Beijing. Currently, I'm worki
 # Research
 I'm mainly interested in theoretical CS, especially complexity theory, cryptography and logic. In the past I have also done research in psychology/neuroscience. Here are some papers that I've worked on:
 
-* [*CNF Formulas and Their Prime Implicants*](l)
+* [*CNF Formulas and Their Prime Implicants*](/resources/cnfs_paper.pdf)
     * Milan Mosse, **Harry Sha**, Li-Yang
 * [*Reappraising faces: effects on accountability appraisals, self-reported valence, and pupil diameter*](https://pubmed.ncbi.nlm.nih.gov/30092708/)
     * Jennifer Yih, **Harry Sha**, Danielle E. Beam, Josef Parvizi, James J. Gross

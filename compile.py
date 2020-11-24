@@ -34,6 +34,7 @@ def compile():
     os.mkdir("_site")
     render_mds()
     shutil.copytree('imgs', '_site/imgs')
+    shutil.copytree('resources', '_site/resources')
     shutil.copy("style.css", '_site/style.css')
 
 compile()
