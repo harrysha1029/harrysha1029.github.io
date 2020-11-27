@@ -1,7 +1,7 @@
 ---
 template:templates/index.html
 ---
-<img id='image-of-me' src="/imgs/me.png" alt="A picture of me" width=300px>
+<img id='image-of-me' src="/imgs/me.png" alt="A picture of me" width=25%>
 
 # Hello! 
 I'm a college student and aspiring researcher from Beijing. Currently, I'm working toward a M.S. in Computer Science at Stanford University. This quarter I'm taking classes in randomized algorithms, and the mathematics and statistics of gambling. I'm also working as a TA for CS 103: Mathematical Foundations of Computing, and as an instructor for the [Inspirit AI](https://www.inspiritai.com/) program. 
@@ -10,7 +10,7 @@ I'm a college student and aspiring researcher from Beijing. Currently, I'm worki
 I'm mainly interested in theoretical CS, especially complexity theory, cryptography and logic. In the past I have also done research in psychology/neuroscience. Here are some papers that I've worked on:
 
 * [*Prime implicants of CNF formulas*](/resources/cnfs_paper.pdf)
-    * Milan Mosse, **Harry Sha**, Li-Yang
+    * Milan Moss&eacute;, **Harry Sha**, Li-Yang
 * [*Reappraising faces: effects on accountability appraisals, self-reported valence, and pupil diameter*](https://pubmed.ncbi.nlm.nih.gov/30092708/)
     * Jennifer Yih, **Harry Sha**, Danielle E. Beam, Josef Parvizi, James J. Gross
     * (Cognition and Emotion, 2018) 

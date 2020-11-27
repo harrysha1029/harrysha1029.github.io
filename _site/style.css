@@ -1,5 +1,5 @@
 :root {
-    --base-font-size: 3vmin;
+    --base-font-size: 2.2vmin;
 
 }
 
@@ -10,7 +10,7 @@ html {
 #container {
     align-items: start;
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: 
     "y header x"
     "left-side content right-side";
@@ -67,7 +67,7 @@ footer {
 h1 {
     font-size: 1.5em;
     text-align: center;
-    padding-top: 0.7em;
+    padding-top: 0.4em;
 }
 li, p {    
     line-height: 1.5em;
