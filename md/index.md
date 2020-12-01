@@ -1,7 +1,7 @@
 ---
 template:templates/index.html
 ---
-<img id='image-of-me' src="/imgs/me.png" alt="A picture of me" width=25%>
+<img id='image-of-me' src="/imgs/me.png" alt="A picture of me" width=30%>
 
 # Hello! 
 I'm a college student and aspiring researcher from Beijing. Currently, I'm working toward a M.S. in Computer Science at Stanford University. This quarter I'm taking classes in randomized algorithms, and the mathematics and statistics of gambling. I'm also working as a TA for CS 103: Mathematical Foundations of Computing, and as an instructor for the [Inspirit AI](https://www.inspiritai.com/) program. 
@@ -18,6 +18,7 @@ I'm mainly interested in theoretical CS, especially complexity theory, cryptogra
 # Teaching
 * Teaching Assistant for CS 255 - Introduction to Cryptography (Winter 2020)
 * Teaching Assistant CS 103 - Mathematical Foundations of Computing (Summer 2020, Fall 2020)
+  * [CS103 Oracle](https://cs103oracle.netlify.app)
 * Curriculum developer at [Inspirit AI](https://www.inspiritai.com/)
   * [Game playing AI - the minimax algorithm and variants](https://drive.google.com/file/d/178WCS3ZlQCnMqtIfhuzaTh6nITSp9hS0/view?usp=sharing)
   * [Segmentation of lung x-rays](https://colab.research.google.com/drive/1S7FP0NW02RNROfJh93GN6yMUDWnpUbWk?usp=sharing)
