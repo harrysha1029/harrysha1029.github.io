@@ -17,7 +17,7 @@ I'm mainly interested in theoretical CS, especially complexity theory, cryptogra
 
 # Teaching
 * Teaching Assistant for CS 255 - Introduction to Cryptography (Winter 2020)
-* Teaching Assistant CS 103 - Mathematical Foundations of Computing (Summer 2020, Fall 2020)
+* Teaching Assistant for CS 103 - Mathematical Foundations of Computing (Summer 2020, Fall 2020)
   * [CS103 Oracle](https://cs103oracle.netlify.app)
 * Curriculum developer at [Inspirit AI](https://www.inspiritai.com/)
   * [Game playing AI - the minimax algorithm and variants](https://drive.google.com/file/d/178WCS3ZlQCnMqtIfhuzaTh6nITSp9hS0/view?usp=sharing)
