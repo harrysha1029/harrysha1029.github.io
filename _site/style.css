@@ -16,7 +16,7 @@ html {
     "left-side content right-side";
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700) {
   #container {
     grid-template-areas:
       "header"
