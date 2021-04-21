@@ -1,6 +1,15 @@
 :root {
-    --base-font-size: 2.4vmin;
-
+    --base-font-size: 18pt;
+    --key-lime: #d9ed92ff;
+    --yellow-green-crayola: #b5e48cff;
+    --granny-smith-apple: #99d98cff;
+    --ocean-green: #76c893ff;
+    --keppel: #52b69aff;
+    --viridian-green: #34a0a4ff;
+    --blue-munsell: #168aadff;
+    --celadon-blue: #1a759fff;
+    --lapis-lazuli: #1e6091ff;
+    --yale-blue: #184e77ff;
 }
 
 html {
@@ -10,7 +19,7 @@ html {
 #container {
     align-items: start;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-areas: 
     "y header x"
     "left-side content right-side";
@@ -34,13 +43,10 @@ html {
 }
 
 a:link{
-  color:black;
+  color: var(--celadon-blue);
 }
 a:visited{
-  color:purple;
-}
-a:hover{
-  color:blue;
+  color: var(--keppel);
 }
 
 #icon {
@@ -49,6 +55,7 @@ a:hover{
 
 #icon a {
     text-decoration: none;
+    color: var(--yale-blue);
     font-size: calc(var(--base-font-size) *2);
     font-weight: bold;
 }
@@ -59,20 +66,16 @@ a:hover{
     font-size: var(--base-font-size);
     text-align: justify;
 }
-footer {
-    position: absolute;
-    bottom: 10px;
-}
 
 h1 {
-    font-size: 1.5em;
+    font-size: calc(var(--base-font-size) * 1.4);
     text-align: center;
-    padding-top: 0.4em;
+    padding-top: 1em;
 }
 li, p {    
     line-height: 1.5em;
 }
- 
+
 #list-of-links li {
     display: inline;
     padding: 1em;
