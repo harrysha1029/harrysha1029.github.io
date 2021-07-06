@@ -1,0 +1,29 @@
+.post {
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-top: 1em;
+    margin-bottom: 3em;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-column-gap: 3em;
+    grid-row-gap: 1em;
+
+}
+
+html {
+    font-family: 'Lora', 'serif';
+}
+
+h1 {
+    margin-left: 1em;
+}
+
+
+
+.gallery {
+    max-width:100%;
+}
+
+.paragraph {
+    font-size:14pt
+}

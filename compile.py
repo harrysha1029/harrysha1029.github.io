@@ -1,7 +1,9 @@
 import markdown2
+import argparse
 import shutil
 import os
 from pathlib import Path
+import travel.compile
 
 
 def read_file(path):
@@ -29,12 +31,21 @@ def render_mds():
     for p in paths:
         render_md(p)
 
-def compile():
+def compile(local):
     shutil.rmtree('_site')
     os.mkdir("_site")
     render_mds()
     shutil.copytree('imgs', '_site/imgs')
     shutil.copytree('resources', '_site/resources')
     shutil.copy("style.css", '_site/style.css')
+    travel.compile.compile(local)
+    shutil.copytree('travel', '_site/travel')
 
-compile()
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l','--local', default=False, action='store_true')
+    args = parser.parse_args()
+
+    compile(args.local)
+
+main()

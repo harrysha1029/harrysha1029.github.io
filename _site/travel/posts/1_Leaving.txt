@@ -1,0 +1,5 @@
+{
+    "title" : "Leaving on an adventure (6/27)",
+    "media_name" : "1_Leaving",
+    "1" : "My goal for the summer was to travel and explore the USA. Despite having lived more than half my life in the US, I've only been to the East Coast, California, and Chicago. I really want to see and experience the rest of the country before I move to Canada and start graduate school in the fall. The plan is to spend each week in the next 9 weeks in a different city. <br><br> Although I'll be spending a lot of time exploring, I have a bunch of other non-travel-related stuff to do too such as teaching, looking for an apartment, and working on research. <br><br> I'll be taking the Amtrak trains which I'm super excited about. I think there will be some awesome sights and also the slowness will let me get some work done/take time to relax and chill. <br><br> My first stop was LA! However, the train was delayed for about 6 hours so I spent the day walking around San Jose. Got some work done in a Starbucks and finally boarded at around 5. Saw some oil pumping machines that were strangely hypnotic and finally arrived in LA at 3:30 am!"
+}

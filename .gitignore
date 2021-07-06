@@ -1,0 +1,6 @@
+**/token.txt
+**/post_media
+**/__pycache__
+*.py[cod]
+*$py.class
+
